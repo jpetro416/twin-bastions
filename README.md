@@ -15,7 +15,21 @@ Two fortified towers connected by a tunnel network through the old Academy Nexus
   - Bring additional weapon batteries online
 - Keep at least one Core alive. Destroy enough Colossi across phases to claim victory.
 
-Teamwork is critical in the full vision (multiplayer / roles). This prototype is a fully playable single-player loop that captures the dual-structure, progressive destruction, pause cadence, and tunnel logistics.
+## Visuals & Audio (Enhanced)
+
+- Animated grid background + atmospheric glow
+- Phase-aware pulsing text (assault red / pause green)
+- Colossus cards pulse and glow while attacking; subtle advance animation while approaching
+- Smooth HP / approach / energy bars with gradient fills
+- Mini building silhouette on each tower card that reflects layer health
+- Layer collapse animation on destruction
+- Selected tower glow + button press feedback
+- **Synthesized sound effects** via Web Audio API (no external files):
+  - Weapon fire, repair, transfer, boost
+  - Phase transitions (assault / pause)
+  - Colossus destroyed, layer lost
+  - Victory fanfare / defeat dirge
+  - UI select / click
 
 ## Tech Stack
 
@@ -26,26 +40,23 @@ Teamwork is critical in the full vision (multiplayer / roles). This prototype is
 ## Quick Start (Web)
 
 ```bash
+git clone https://github.com/jpetro416/twin-bastions.git
+cd twin-bastions
 npm install
 npm run dev
 ```
 
-Open http://localhost:3000
+Open http://localhost:3000  
+(Click / interact once to unlock audio in the browser.)
 
 ## Desktop (Tauri)
 
 ```bash
-# Prerequisites: Rust (rustup), system dependencies for Tauri
+# Prerequisites: Rust + Tauri system deps
 # https://v2.tauri.app/start/prerequisites/
 
 npm install
 npm run tauri:dev
-```
-
-To produce a release build:
-
-```bash
-npm run tauri:build
 ```
 
 ## Game Controls
@@ -53,33 +64,30 @@ npm run tauri:build
 1. Click **Initialize Protocol**
 2. Select a Bastion (Alpha or Beta)
 3. Click a layer to target it for repair
-4. Use the action buttons:
-   - **Repair Layer** (15 resources)
-   - **Fire Weapons** (25 energy) — damages the active Colossus
-   - **Tunnel Transfer** (5 resources) — moves energy to the other tower
-   - **Boost Weapons** (25 resources) — increases firepower
-5. Survive assault phases, use the pause windows wisely.
+4. Use the action buttons
+5. Survive assault phases, use the pause windows wisely
 
 ## Project Structure
 
 ```
 twin-bastions/
 ├── src/
-│   ├── app/           # Next.js pages & layout
+│   ├── app/           # UI + styles
 │   └── lib/
 │       ├── gameTypes.ts
-│       └── gameEngine.ts
+│       ├── gameEngine.ts
+│       └── sounds.ts     # Web Audio SFX
 ├── src-tauri/         # Tauri / Rust shell
 └── ...
 ```
 
 ## Roadmap / Future
 
-- Multiplayer / co-op roles (engineer, gunner, tunnel runner)
-- More distinct Colossus types and behaviors
-- Visual destruction of floors / particle effects
+- Multiplayer / co-op roles
+- More distinct Colossus types
+- Canvas / particle destruction effects
 - Persistent scar map across runs
-- Companion characters and narrative events drawn from the original dream
+- Companion characters from the original dream
 
 ---
 
